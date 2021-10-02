@@ -13,18 +13,29 @@ export class PostsComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.posts = this.postService.getPosts();
-    this.totalVotes = this.totalVotes = this.posts.reduce(
-      (a, b) => +a + +b.votes,
-      0
-    );
+    this.postService.getPosts().subscribe((res) => {
+      for (let index = 0; index < res.length; index++) {
+        const post = res[index];
+        post['votes'] = 0;
+      }
+      this.posts = res;
+      this.totalVotes = this.totalVotes = this.posts.reduce(
+        (a, b) => +a + +b.votes,
+        0
+      );
+    });
   }
 
   hidePost(post: Post): void {
-    this.posts = this.posts.filter((p) => p.id !== post.id);
+    this.posts = this.posts.filter((p) => p.title !== post.title);
   }
 
   updateTotalvotes(post: Post): void {
     this.totalVotes = this.posts.reduce((a, b) => +a + +b.votes, 0);
+  }
+
+  addPost(post: Post): void {
+    this.posts.unshift(post);
+    alert('post added');
   }
 }

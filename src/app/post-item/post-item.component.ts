@@ -12,7 +12,6 @@ export class PostItemComponent implements OnInit {
   @Output() updateTotalvotes: EventEmitter<Post> = new EventEmitter();
   constructor() {
     this.post = {
-      id: 1,
       title: '',
       body: '',
       votes: 1,
