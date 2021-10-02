@@ -1,38 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/Post';
+import { PostService } from '../services/post.service';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
-  title: string = 'Posts';
+  title: string = 'Welcome to Posts';
   posts: Post[] = [];
   totalVotes!: number;
-  constructor() {}
+  constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.posts = [
-      {
-        id: 1,
-        title: 'My first post',
-        body: 'Just testing this out',
-        votes: 1,
-      },
-      {
-        id: 2,
-        title: 'My pet',
-        body: 'Just testing this out',
-        votes: 1,
-      },
-      {
-        id: 3,
-        title: 'My car',
-        body: 'Just testing this out',
-        votes: 1,
-      },
-    ];
-    this.totalVotes = this.posts.reduce((a, b) => +a + +b.votes, 0);
+    this.posts = this.postService.getPosts();
+    this.totalVotes = this.totalVotes = this.posts.reduce(
+      (a, b) => +a + +b.votes,
+      0
+    );
   }
 
   hidePost(post: Post): void {

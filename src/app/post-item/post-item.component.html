@@ -1,10 +1,12 @@
-<h3 [ngStyle]="{ color: post.id % 2 === 1 ? 'blue' : 'green' }">
-  {{ post.title }}
-</h3>
-<p>{{ post.body }}</p>
-<p>votes: {{ post.votes }}</p>
-<br />
+<div class="post">
+  <h3 [ngStyle]="{ color: post.id % 2 === 1 ? 'blue' : 'green' }">
+    {{ post.title }}
+  </h3>
+  <p>{{ post.body }}</p>
+  <p>votes: {{ post.votes }}</p>
+  <br />
 
-<button (click)="upvote(post)">Upvote</button>
-<button (click)="downvote(post)">Downvote</button>
-<button (click)="hide(post)">Hide</button>
+  <button (click)="upvote(post)" class="btn btn-primary">Upvote</button>
+  <button (click)="downvote(post)" class="btn btn-danger">Downvote</button>
+  <button (click)="hide(post)" class="btn btn-dark">Hide</button>
+</div>
