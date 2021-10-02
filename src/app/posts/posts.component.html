@@ -1,0 +1,19 @@
+<h1>{{ title }}</h1>
+<h2>Total votes: {{ totalVotes }}</h2>
+<a routerLink="history">To History!</a>
+<app-post-item
+  *ngFor="let post of posts"
+  [post]="post"
+  (hidePost)="hidePost($event)"
+  (updateTotalvotes)="updateTotalvotes($event)"
+>
+</app-post-item>
+
+<!-- <ul *ngFor="let post of posts">
+  <li *ngIf="post.id === 1">This is first post!</li>
+  <li [ngStyle]="{ color: post.id === 1 ? 'red' : 'green' }">
+    {{ post.title }}
+  </li>
+  <li>{{ post.body }}</li>
+  <li>{{ post.votes }}</li>
+</ul> -->
